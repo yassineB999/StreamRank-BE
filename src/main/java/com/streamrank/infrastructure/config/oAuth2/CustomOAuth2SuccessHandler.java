@@ -1,5 +1,6 @@
 package com.streamrank.infrastructure.config.oAuth2;
 
+import com.streamrank.application.user.UserService;
 import com.streamrank.domain.user.enumeration.AccountTypeEnum;
 import com.streamrank.domain.user.model.User;
 import com.streamrank.infrastructure.config.JWT.JwtUtil;
@@ -15,7 +16,7 @@ import org.springframework.security.web.authentication.SimpleUrlAuthenticationSu
 import org.springframework.stereotype.Component;
 
 import java.io.IOException;
-
+//step2
 @Component
 @AllArgsConstructor
 public class CustomOAuth2SuccessHandler extends SimpleUrlAuthenticationSuccessHandler {

@@ -1,16 +1,14 @@
 package com.streamrank.domain.user.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.streamrank.domain.favoritemovie.model.FavoriteMovie;
 import jakarta.persistence.*;
 import lombok.*;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.Date;
-import java.util.List;
+import java.util.*;
 
 @Entity
 @Table(name = "users")
@@ -43,6 +41,10 @@ public class User implements UserDetails {
         authorities.add( (isAdmin) ? new SimpleGrantedAuthority("ROLE_ADMIN") : new SimpleGrantedAuthority("ROLE_USER"));
         return authorities;
     }
+
+    @OneToMany(mappedBy = "user", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    private Set<FavoriteMovie> favoriteMovies;
+
 
     @Override @JsonIgnore
     public String getUsername() {

@@ -44,6 +44,7 @@ public class SecurityConfig implements WebMvcConfigurer {
                         .requestMatchers("/api/v1/user/**").authenticated()
                         .anyRequest().authenticated())
                 .authenticationProvider(authenticationProvider())
+                //step 1
                 .oauth2Login(oauth2 -> oauth2
                         .successHandler(customOAuth2SuccessHandler))
                 .sessionManagement(sessionManagement -> sessionManagement
