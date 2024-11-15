@@ -8,7 +8,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Entity
-@Table(name = "favoritesmovies")
+@Table(name = "favorites_movies")
 @Getter
 @Setter
 @AllArgsConstructor

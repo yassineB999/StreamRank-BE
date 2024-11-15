@@ -1,7 +1,7 @@
 package com.streamrank.infrastructure.config.JWT;
 
-import com.recruai.domain.user.model.User;
-import com.recruai.domain.user.service.UserDomainService;
+import com.streamrank.domain.user.model.User;
+import com.streamrank.domain.user.service.UserDomainService;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
@@ -18,10 +18,10 @@ import java.util.Map;
 @Component
 public class JwtUtil {
 
-    @Value("${devprogen.jwt.secretkey}")
+    @Value("${streamrank.jwt.secretkey}")
     private String secretKey;
 
-    @Value("${devprogen.jwt.expirationtime}")
+    @Value("${streamrank.jwt.expirationtime}")
     private long expirationTime;
 
     private Key getSigningKey() {
