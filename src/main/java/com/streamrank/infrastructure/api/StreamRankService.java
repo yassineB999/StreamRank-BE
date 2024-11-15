@@ -46,4 +46,35 @@ public class StreamRankService {
 
         return moviesArray.toList();
     }
+
+    public Object listSuggestionMovies(Integer movieId) {
+        String url = apiBaseUrl + "/movie_suggestions.json?movie_id=" + movieId;
+
+        ResponseEntity<String> response = restTemplate.getForEntity(url, String.class);
+
+        String responseBody = response.getBody();
+
+        JSONObject jsonResponse = new JSONObject(responseBody);
+
+        JSONObject dataObject = jsonResponse.getJSONObject("data");
+
+        JSONArray moviesArray = dataObject.getJSONArray("movies");
+
+        return moviesArray.toList();
+    }
+    public Object listDetailMovie(Integer movieId) {
+        String url = apiBaseUrl + "/movie_details.json?movie_id=1" + movieId;
+
+        ResponseEntity<String> response = restTemplate.getForEntity(url, String.class);
+
+        String responseBody = response.getBody();
+
+        JSONObject jsonResponse = new JSONObject(responseBody);
+
+        JSONObject dataObject = jsonResponse.getJSONObject("data");
+
+        JSONObject movieObject = dataObject.getJSONObject("movie");
+
+        return movieObject.toMap();
+    }
 }

@@ -40,4 +40,18 @@ public class UserController {
 
         return ResponseEntity.status(HttpStatus.OK).body(ResponseWrapper.success(streamRankService.listNextMovies(pageNumber)));
     }
+    @GetMapping(value = "/getSuggetionMovies") @PreAuthorize("hasAnyRole('ADMIN', 'USER')")
+    public ResponseEntity<?> getListSuggetionMovies(Principal principal, @PathParam("movieId") int movieId) {
+        if (principal == null) return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(ResponseWrapper.error("User is not authenticated"));
+
+        return ResponseEntity.status(HttpStatus.OK).body(ResponseWrapper.success(streamRankService.listSuggestionMovies(movieId)));
+    }
+
+    @GetMapping(value = "/getDetailMovie") @PreAuthorize("hasAnyRole('ADMIN', 'USER')")
+    public ResponseEntity<?> getDetailMovie(Principal principal, @PathParam("movieId") int movieId) {
+        if (principal == null) return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(ResponseWrapper.error("User is not authenticated"));
+
+        return ResponseEntity.status(HttpStatus.OK).body(ResponseWrapper.success(streamRankService.listDetailMovie(movieId)));
+    }
+
 }
