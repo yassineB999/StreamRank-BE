@@ -11,7 +11,7 @@ import org.springframework.web.client.RestTemplate;
 
 @Service
 public class StreamRankService {
-    @Value("${spring.application.apiUrl}")
+    @Value("${spring.application.moviesApiUrl}")
     private String apiBaseUrl;
     private final RestTemplate restTemplate = new RestTemplate();
 
@@ -62,8 +62,9 @@ public class StreamRankService {
 
         return moviesArray.toList();
     }
+
     public Object listDetailMovie(Integer movieId) {
-        String url = apiBaseUrl + "/movie_details.json?movie_id=1" + movieId;
+        String url = apiBaseUrl + "/movie_details.json?movie_id=" + movieId;
 
         ResponseEntity<String> response = restTemplate.getForEntity(url, String.class);
 
