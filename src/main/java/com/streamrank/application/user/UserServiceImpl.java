@@ -74,4 +74,9 @@ public class UserServiceImpl implements UserService {
         data.put("rid", newUser.getAuthorities().toString().charAt(6));
         return data;
     }
+
+    @Override
+    public User getMyInfoByUserName(String userName) {
+        return userDomainService.findByUserName(userName);
+    }
 }

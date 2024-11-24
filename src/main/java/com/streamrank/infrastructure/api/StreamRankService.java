@@ -78,4 +78,27 @@ public class StreamRankService {
 
         return movieObject.toMap();
     }
+
+    public Object searchMovies(String queryTerm) {
+        String url = apiBaseUrl + "/list_movies.json?query_term=" + queryTerm;
+
+        ResponseEntity<String> response = restTemplate.getForEntity(url, String.class);
+
+        // Check if the response is successful
+        if (response.getStatusCode().is2xxSuccessful()) {
+            String responseBody = response.getBody();
+            JSONObject jsonResponse = new JSONObject(responseBody);
+
+            // Check if the "data" object exists in the response
+            if (jsonResponse.has("data")) {
+                JSONObject dataObject = jsonResponse.getJSONObject("data");
+                JSONArray moviesArray = dataObject.getJSONArray("movies");
+                return moviesArray.toList(); // Convert to List and return
+            } else {
+                throw new RuntimeException("No data found in response");
+            }
+        } else {
+            throw new RuntimeException("Failed to fetch movies: " + response.getStatusCode());
+        }
+    }
 }

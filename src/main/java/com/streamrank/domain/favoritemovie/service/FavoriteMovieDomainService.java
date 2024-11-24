@@ -29,9 +29,16 @@ public class FavoriteMovieDomainService {
         return jpaFavoriteMovieRepository.save(favoriteMovie);
     }
 
+    public void delete(FavoriteMovie favoriteMovie) {
+        jpaFavoriteMovieRepository.delete(favoriteMovie);
+    }
+
     // Delete attribute
     public void delete(Long id) {
         jpaFavoriteMovieRepository.deleteById(id);
     }
 
+    public List<FavoriteMovie> findAllByUser_IdUser(Long user_id){
+        return jpaFavoriteMovieRepository.findAllByUser_IdUser(user_id);
+    }
 }

@@ -21,4 +21,9 @@ public class StreamRankController {
     public ResponseEntity<?> Error(){
         return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(ResponseWrapper.error("Internal Error"));
     }
+
+    @GetMapping("/ping")
+    public ResponseEntity<?> Ping(){
+        return ResponseEntity.status(HttpStatus.OK).body(ResponseWrapper.success("pong"));
+    }
 }

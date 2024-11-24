@@ -1,8 +1,10 @@
 package com.streamrank.domain.favoritemovie.model;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.streamrank.domain.user.model.User;
 import jakarta.persistence.*;
 import lombok.*;
+import org.hibernate.annotations.Cascade;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -24,16 +26,16 @@ public class FavoriteMovie {
 
     String movieCategory;
 
-    @ElementCollection
+    @ElementCollection(fetch = FetchType.EAGER) @Cascade(org.hibernate.annotations.CascadeType.ALL)
     List<String> movieGenre;
 
     String movieRating;
 
     String imageCover;
 
-    @ElementCollection
+    @ElementCollection(fetch = FetchType.EAGER) @Cascade(org.hibernate.annotations.CascadeType.ALL)
     List<String> availableDownloadLinks;
 
-    @ManyToOne
+    @ManyToOne @JsonBackReference
     User user;
 }
