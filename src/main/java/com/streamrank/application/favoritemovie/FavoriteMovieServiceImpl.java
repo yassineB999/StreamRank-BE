@@ -42,6 +42,7 @@ public class FavoriteMovieServiceImpl implements FavoriteMovieService {
         FavoriteMovie foundFavoriteMovie = null;
 
         for(FavoriteMovie favoriteMovie : existingFavorites){
+            if(favoriteMovie.getIdMovie() == null) continue;
             if(favoriteMovie.getIdMovie().equals(favoriteMovieDTO.idMovie())) foundFavoriteMovie = favoriteMovie;
         }
 
